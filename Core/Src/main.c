@@ -72,7 +72,7 @@ int main(void)
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
-
+// lul
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
