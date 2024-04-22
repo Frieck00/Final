@@ -57,6 +57,12 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define drv_en_Pin GPIO_PIN_4
+#define drv_en_GPIO_Port GPIOA
+#define drv_err_Pin GPIO_PIN_1
+#define drv_err_GPIO_Port GPIOB
+#define drv_rst_Pin GPIO_PIN_2
+#define drv_rst_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

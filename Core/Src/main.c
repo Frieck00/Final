@@ -72,7 +72,7 @@ int main(void)
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
-// lul
+
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
@@ -91,10 +91,10 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIMEx_PWMN_Start(&htim2, TIM_CHANNEL_1);
-  HAL_TIMEx_PWMN_Start(&htim2, TIM_CHANNEL_2);
-  HAL_TIMEx_PWMN_Start(&htim2, TIM_CHANNEL_3);
-  HAL_TIMEx_PWMN_Start(&htim2, TIM_CHANNEL_4);
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
   int pulse=0;
 
   uint32_t PhaseA;
@@ -118,10 +118,11 @@ int main(void)
 
 
   void SetAngle(uint16_t Angle){
-	  AA=sin(Angle* (M_PI / 180.0))*pow(2, 10);
-	  BB=cos(Angle* (M_PI / 180.0))*pow(2, 10);
+	  AA=sin(Angle* (M_PI / 180.0))*pow(2, 10)*0.01;
+	  BB=cos(Angle* (M_PI / 180.0))*pow(2, 10)*0.01;
 	  SetPWM(AA,BB);
   }
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -129,12 +130,13 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
+	  pulse++;
 	  pulse++;
 	  if(pulse>360){pulse=-360;}
 	  SetAngle(pulse);
-	  HAL_Delay(10);
+    /* USER CODE BEGIN 3 */
+
+	  //HAL_Delay(1);
   }
   /* USER CODE END 3 */
 }
