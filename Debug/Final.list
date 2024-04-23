@@ -37,11 +37,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  0001d595  00000000  00000000  000135d8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000cf97  00000000  00000000  00030b6d  2**0
+ 17 .debug_line   0000cf96  00000000  00000000  00030b6d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000bf1f7  00000000  00000000  0003db04  2**0
+ 18 .debug_str    000bf1f7  00000000  00000000  0003db03  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000fccfb  2**0
+ 19 .comment      00000043  00000000  00000000  000fccfa  2**0
                   CONTENTS, READONLY
  20 .debug_frame  000035d4  00000000  00000000  000fcd40  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -932,19 +932,19 @@ int main(void)
  8000ab0:	f000 f94c 	bl	8000d4c <MX_TIM2_Init>
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
  8000ab4:	2100      	movs	r1, #0
- 8000ab6:	4812      	ldr	r0, [pc, #72]	@ (8000b00 <main+0x68>)
+ 8000ab6:	4811      	ldr	r0, [pc, #68]	@ (8000afc <main+0x64>)
  8000ab8:	f001 fbca 	bl	8002250 <HAL_TIM_PWM_Start>
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
  8000abc:	2104      	movs	r1, #4
- 8000abe:	4810      	ldr	r0, [pc, #64]	@ (8000b00 <main+0x68>)
+ 8000abe:	480f      	ldr	r0, [pc, #60]	@ (8000afc <main+0x64>)
  8000ac0:	f001 fbc6 	bl	8002250 <HAL_TIM_PWM_Start>
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
  8000ac4:	2108      	movs	r1, #8
- 8000ac6:	480e      	ldr	r0, [pc, #56]	@ (8000b00 <main+0x68>)
+ 8000ac6:	480d      	ldr	r0, [pc, #52]	@ (8000afc <main+0x64>)
  8000ac8:	f001 fbc2 	bl	8002250 <HAL_TIM_PWM_Start>
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
  8000acc:	210c      	movs	r1, #12
- 8000ace:	480c      	ldr	r0, [pc, #48]	@ (8000b00 <main+0x68>)
+ 8000ace:	480b      	ldr	r0, [pc, #44]	@ (8000afc <main+0x64>)
  8000ad0:	f001 fbbe 	bl	8002250 <HAL_TIM_PWM_Start>
   int pulse=0;
  8000ad4:	2300      	movs	r3, #0
@@ -954,31 +954,29 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  pulse++;
+	  pulse=pulse+1;
  8000ad8:	69fb      	ldr	r3, [r7, #28]
  8000ada:	3301      	adds	r3, #1
  8000adc:	61fb      	str	r3, [r7, #28]
-	  pulse++;
- 8000ade:	69fb      	ldr	r3, [r7, #28]
- 8000ae0:	3301      	adds	r3, #1
- 8000ae2:	61fb      	str	r3, [r7, #28]
 	  if(pulse>360){pulse=-360;}
- 8000ae4:	69fb      	ldr	r3, [r7, #28]
- 8000ae6:	f5b3 7fb4 	cmp.w	r3, #360	@ 0x168
- 8000aea:	dd01      	ble.n	8000af0 <main+0x58>
- 8000aec:	4b05      	ldr	r3, [pc, #20]	@ (8000b04 <main+0x6c>)
- 8000aee:	61fb      	str	r3, [r7, #28]
+ 8000ade:	69fb      	ldr	r3, [r7, #28]
+ 8000ae0:	f5b3 7fb4 	cmp.w	r3, #360	@ 0x168
+ 8000ae4:	dd01      	ble.n	8000aea <main+0x52>
+ 8000ae6:	4b06      	ldr	r3, [pc, #24]	@ (8000b00 <main+0x68>)
+ 8000ae8:	61fb      	str	r3, [r7, #28]
 	  SetAngle(pulse);
- 8000af0:	69fb      	ldr	r3, [r7, #28]
- 8000af2:	b29b      	uxth	r3, r3
- 8000af4:	463a      	mov	r2, r7
- 8000af6:	4694      	mov	ip, r2
- 8000af8:	4618      	mov	r0, r3
- 8000afa:	f000 f805 	bl	8000b08 <SetAngle.0>
-	  pulse++;
- 8000afe:	e7eb      	b.n	8000ad8 <main+0x40>
- 8000b00:	20000028 	.word	0x20000028
- 8000b04:	fffffe98 	.word	0xfffffe98
+ 8000aea:	69fb      	ldr	r3, [r7, #28]
+ 8000aec:	b29b      	uxth	r3, r3
+ 8000aee:	463a      	mov	r2, r7
+ 8000af0:	4694      	mov	ip, r2
+ 8000af2:	4618      	mov	r0, r3
+ 8000af4:	f000 f808 	bl	8000b08 <SetAngle.0>
+	  pulse=pulse+1;
+ 8000af8:	e7ee      	b.n	8000ad8 <main+0x40>
+ 8000afa:	bf00      	nop
+ 8000afc:	20000028 	.word	0x20000028
+ 8000b00:	fffffe98 	.word	0xfffffe98
+ 8000b04:	00000000 	.word	0x00000000
 
 08000b08 <SetAngle.0>:
   void SetAngle(uint16_t Angle){
@@ -989,7 +987,7 @@ int main(void)
  8000b10:	80fb      	strh	r3, [r7, #6]
  8000b12:	4664      	mov	r4, ip
  8000b14:	f8c7 c000 	str.w	ip, [r7]
-	  AA=sin(Angle* (M_PI / 180.0))*pow(2, 10)*0.01;
+	  AA=sin(Angle* (M_PI / 180.0))*pow(2, 10)*0.02;
  8000b18:	88fb      	ldrh	r3, [r7, #6]
  8000b1a:	4618      	mov	r0, r3
  8000b1c:	f7ff fdf8 	bl	8000710 <__aeabi_i2d>
@@ -1020,7 +1018,7 @@ int main(void)
  8000b66:	f7ff fec5 	bl	80008f4 <__aeabi_d2iz>
  8000b6a:	4603      	mov	r3, r0
  8000b6c:	6063      	str	r3, [r4, #4]
-	  BB=cos(Angle* (M_PI / 180.0))*pow(2, 10)*0.01;
+	  BB=cos(Angle* (M_PI / 180.0))*pow(2, 10)*0.02;
  8000b6e:	88fb      	ldrh	r3, [r7, #6]
  8000b70:	4618      	mov	r0, r3
  8000b72:	f7ff fdcd 	bl	8000710 <__aeabi_i2d>
@@ -1066,7 +1064,7 @@ int main(void)
  8000bda:	bf00      	nop
  8000bdc:	f3af 8000 	nop.w
  8000be0:	47ae147b 	.word	0x47ae147b
- 8000be4:	3f847ae1 	.word	0x3f847ae1
+ 8000be4:	3f947ae1 	.word	0x3f947ae1
  8000be8:	a2529d39 	.word	0xa2529d39
  8000bec:	3f91df46 	.word	0x3f91df46
  8000bf0:	40900000 	.word	0x40900000

@@ -3096,8 +3096,9 @@ LOAD C:/ST/STM32CubeIDE_1.10.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                 0x08000944                MX_GPIO_Init
  .text.SetPWM.1
                 0x08000a1c       0x7c ./Core/Src/main.o
- .text.main     0x08000a98       0x70 ./Core/Src/main.o
+ .text.main     0x08000a98       0x6c ./Core/Src/main.o
                 0x08000a98                main
+ *fill*         0x08000b04        0x4 
  .text.SetAngle.0
                 0x08000b08       0xec ./Core/Src/main.o
  .text.SystemClock_Config
@@ -3735,21 +3736,21 @@ LOAD C:/ST/STM32CubeIDE_1.10.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_macro   0x0001d213      0x1c2 ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.o
  .debug_macro   0x0001d3d5      0x1c0 ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.o
 
-.debug_line     0x00000000     0xcf97
+.debug_line     0x00000000     0xcf96
  .debug_line    0x00000000      0x75d ./Core/Src/gpio.o
- .debug_line    0x0000075d      0x9ab ./Core/Src/main.o
- .debug_line    0x00001108      0x737 ./Core/Src/stm32g4xx_hal_msp.o
- .debug_line    0x0000183f      0x7f9 ./Core/Src/stm32g4xx_it.o
- .debug_line    0x00002038      0x7a3 ./Core/Src/system_stm32g4xx.o
- .debug_line    0x000027db      0x81e ./Core/Src/tim.o
- .debug_line    0x00002ff9       0x7b ./Core/Startup/startup_stm32g431cbux.o
- .debug_line    0x00003074      0xb5f ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.o
- .debug_line    0x00003bd3      0xcc8 ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.o
- .debug_line    0x0000489b      0xb78 ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.o
- .debug_line    0x00005413      0xcce ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.o
- .debug_line    0x000060e1      0xf2a ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.o
- .debug_line    0x0000700b     0x3eed ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.o
- .debug_line    0x0000aef8     0x209f ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.o
+ .debug_line    0x0000075d      0x9aa ./Core/Src/main.o
+ .debug_line    0x00001107      0x737 ./Core/Src/stm32g4xx_hal_msp.o
+ .debug_line    0x0000183e      0x7f9 ./Core/Src/stm32g4xx_it.o
+ .debug_line    0x00002037      0x7a3 ./Core/Src/system_stm32g4xx.o
+ .debug_line    0x000027da      0x81e ./Core/Src/tim.o
+ .debug_line    0x00002ff8       0x7b ./Core/Startup/startup_stm32g431cbux.o
+ .debug_line    0x00003073      0xb5f ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.o
+ .debug_line    0x00003bd2      0xcc8 ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.o
+ .debug_line    0x0000489a      0xb78 ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.o
+ .debug_line    0x00005412      0xcce ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.o
+ .debug_line    0x000060e0      0xf2a ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.o
+ .debug_line    0x0000700a     0x3eed ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.o
+ .debug_line    0x0000aef7     0x209f ./Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.o
 
 .debug_str      0x00000000    0xbf1f7
  .debug_str     0x00000000    0xb7c48 ./Core/Src/gpio.o

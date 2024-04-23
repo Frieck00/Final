@@ -118,8 +118,8 @@ int main(void)
 
 
   void SetAngle(uint16_t Angle){
-	  AA=sin(Angle* (M_PI / 180.0))*pow(2, 10)*0.01;
-	  BB=cos(Angle* (M_PI / 180.0))*pow(2, 10)*0.01;
+	  AA=sin(Angle* (M_PI / 180.0))*pow(2, 10)*0.02;
+	  BB=cos(Angle* (M_PI / 180.0))*pow(2, 10)*0.02;
 	  SetPWM(AA,BB);
   }
 
@@ -130,8 +130,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  pulse++;
-	  pulse++;
+	  pulse=pulse+1;
 	  if(pulse>360){pulse=-360;}
 	  SetAngle(pulse);
     /* USER CODE BEGIN 3 */
