@@ -57,7 +57,8 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+#define Drive_Voltage 10;
+#define Motor_Voltage 2;
 /* USER CODE END 0 */
 
 /**
@@ -68,7 +69,35 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+	  int pulse=0;
 
+	  uint32_t PhaseA;
+	  uint32_t PhaseB;
+	  uint32_t PhaseA2;
+	  uint32_t PhaseB2;
+	  int32_t AA;
+	  int32_t BB;
+	  int32_t PWMValues[2][360];
+	  float uzuf = 0.25;
+
+	  void SetPWM(int32_t A, int32_t B){
+		  if(A>0){PhaseA=A;PhaseA2=0;}
+		  else{PhaseA=0;PhaseA2=abs(A);}
+		  if(B>0){PhaseB=B;PhaseB2=0;}
+		  else{PhaseB=0;PhaseB2=abs(B);}
+		  __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,PhaseA);
+		  __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,PhaseA2);
+		  __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,PhaseB);
+		  __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_4,PhaseB2);
+	  }
+	  void CalcPWM(void){
+		  for (int i = 0; i <= 360; i++) {
+			  AA=sin(i*(M_PI / 180.0))*pow(2, 7)*uzuf;
+			  BB=cos(i*(M_PI / 180.0))*pow(2, 7)*uzuf;
+			  PWMValues[0][i]=AA;
+			  PWMValues[1][i]=BB;
+		  }
+	  }
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -90,38 +119,13 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM2_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
-  int pulse=0;
-
-  uint32_t PhaseA;
-  uint32_t PhaseB;
-  uint32_t PhaseA2;
-  uint32_t PhaseB2;
-  int32_t AA;
-  int32_t BB;
-
-
-  void SetPWM(int32_t A, int32_t B){
-	  if(A>0){PhaseA=A;PhaseA2=0;}
-	  else{PhaseA=0;PhaseA2=abs(A);}
-	  if(B>0){PhaseB=B;PhaseB2=0;}
-	  else{PhaseB=0;PhaseB2=abs(B);}
-	  __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,PhaseA);
-	  __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,PhaseA2);
-	  __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,PhaseB);
-	  __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_4,PhaseB2);
-  }
-
-
-  void SetAngle(uint16_t Angle){
-	  AA=sin(Angle* (M_PI / 180.0))*pow(2, 10)*0.02;
-	  BB=cos(Angle* (M_PI / 180.0))*pow(2, 10)*0.02;
-	  SetPWM(AA,BB);
-  }
+  CalcPWM();
 
   /* USER CODE END 2 */
 
@@ -130,12 +134,12 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  pulse=pulse+1;
-	  if(pulse>360){pulse=-360;}
-	  SetAngle(pulse);
-    /* USER CODE BEGIN 3 */
 
-	  //HAL_Delay(1);
+    /* USER CODE BEGIN 3 */
+	  pulse++;
+	  if(pulse>359){pulse=1;}
+	  SetPWM(PWMValues[0][pulse],PWMValues[1][pulse]);
+	  HAL_Delay(1);
   }
   /* USER CODE END 3 */
 }
